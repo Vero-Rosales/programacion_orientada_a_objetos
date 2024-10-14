@@ -3,7 +3,7 @@ let pelotas = [];
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  bgColor = color(255, 0, 155);
+  bgColor = color(155, 0, 255);
   for (let i = 0; i < 100; i++) {
     let nuevaPelota = new Pelota();
     pelotas.push(nuevaPelota);
@@ -29,8 +29,8 @@ class Pelota {
     this.diam = this.rad * 2;
     this.posX = random(this.rad, width - this.rad);
     this.posY = random(this.rad, height - this.rad);
-    this.velX = 5;
-    this.velY = 5;
+    this.velX = random(-10, 10);
+    this.velY = random(-10, 10);
     console.log("estoy vivaaa!");
   }
   //método update
