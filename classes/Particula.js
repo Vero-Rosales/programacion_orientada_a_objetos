@@ -7,8 +7,13 @@ class Particula {
     // tVida es el tiempo de vida
     this.tVida = round(random(10, 200));
     this.tamaño = 50;
-    // Asignamos un color aleatorio a cada partícula
-    this.color = color(random(255), random(255), random(255));
+
+    // Asignamos blanco o celeste aleatoriamente a cada partícula
+    let colores = [
+      color(255, 255, 255), // Blanco
+      color(173, 216, 230), // Celeste
+    ];
+    this.color = random(colores);
   }
 
   update() {
@@ -23,16 +28,29 @@ class Particula {
   }
 
   display() {
-    // Usamos el color de la partícula
-    fill(this.color);
-    noStroke();
+    // Usamos el color de la partícula (blanco o celeste)
+    stroke(this.color);
+    strokeWeight(2);
+    noFill();
 
-    // Dibujar el rombo
-    beginShape();
-    vertex(this.posx, this.posy - this.tamaño / 2); // vértice superior
-    vertex(this.posx + this.tamaño / 2, this.posy); // vértice derecho
-    vertex(this.posx, this.posy + this.tamaño / 2); // vértice inferior
-    vertex(this.posx - this.tamaño / 2, this.posy); // vértice izquierdo
-    endShape(CLOSE);
+    // Dibujar el copo de nieve
+    push();
+    translate(this.posx, this.posy);
+    let ramas = 6; // Número de ramas del copo de nieve
+    let angulo = TWO_PI / ramas;
+
+    for (let i = 0; i < ramas; i++) {
+      line(0, 0, 0, -this.tamaño / 2); // Ramas principales
+
+      // Dibujar ramas secundarias en cada rama principal
+      push();
+      translate(0, -this.tamaño / 4); // Posiciona las ramas secundarias a lo largo de la rama principal
+      line(0, 0, -this.tamaño / 8, -this.tamaño / 8); // Rama secundaria izquierda
+      line(0, 0, this.tamaño / 8, -this.tamaño / 8); // Rama secundaria derecha
+      pop();
+
+      rotate(angulo);
+    }
+    pop();
   }
 }
