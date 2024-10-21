@@ -61,7 +61,7 @@ function draw() {
   particulas = particulas.filter((pelota) => pelota.estaViva);
 
   noFill();
-  stroke(252, 99, 145);
+  stroke(0, 99, 255);
   strokeWeight(1);
 
   for (let i = 0; i < particulas.length - 1; i++) {
